@@ -1,0 +1,66 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+nexus:
+  pkg_install: 
+    version: '3.15.2-01'
+    srcpath: '/srv/binarys/nexus/latest-unix.tar.gz'
+    savepath: '/home/nexus/download'
+  datacopy:
+    originuser: 'root'
+    originhost: 'nexus-inc-01'
+    originpath: '/srv/nexus-data'
+  install:
+    path: '/opt/factory'
+    datapath: '/opt/factory/nexus-work'
+  group:
+    name: 'nexus'
+    gid:
+  user:
+    name: 'nexus'
+    uid:
+    environmentvariable: 'NEXUS_HOME="/opt/factory/nexus"'
+    home: '/home/nexus'
+  file:
+    nexus:
+      limit: '65536'
+      properties:
+        applicationport: '8081'
+        # By uncommenting 'applicationportssl' Enabling this will start jetty in SSL mode
+        #applicationportssl: '8443'
+        applicationhost: '0.0.0.0'
+        nexuscontextpath: '/'
+        nexusfeatures:
+          nexusprofeature: 'NO'
+      jetty:
+        https: 
+          keystorepath: 'dummy'
+          keystorepassword: 'dummy1234'
+          keymanagerpassword: 'dummy1234'
+          truststorepath: 'dummy'
+          truststorepassword: 'dummy1234'
+          certificate:
+            commonname: 'dummy'
+            ou: 'dummy'
+            organisation: 'dummy'
+            country: 'AT'
+      rc:
+        runasuser: 'nexus'
+      vmoptions:
+        addjavavariables:
+          - 'Xms1200M'
+          - 'Xmx1200M'
+          - 'XX:MaxDirectMemorySize=2G'
+          - 'XX:+UnlockDiagnosticVMOptions'
+          - 'XX:+UnsyncloadClass'
+          - 'XX:+LogVMOutput'
+          - 'XX:LogFile=../sonatype-work/nexus3/log/jvm.log'
+          - 'Djava.net.preferIPv4Stack=true'
+          - 'Dkaraf.home=.'
+          - 'Dkaraf.base=.'
+          - 'Dkaraf.etc=etc/karaf'
+          - 'Djava.util.logging.config.file=etc/karaf/java.util.logging.properties'
+          - 'Dkaraf.data=../sonatype-work/nexus3'
+          - 'Djava.io.tmpdir=../sonatype-work/nexus3/tmp'
+          - "Dkaraf.s'tartLocalConsole=false"
+          - 'Djava.util.prefs.userRoot=/home/nexus/.java'
+        

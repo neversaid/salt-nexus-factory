@@ -1,0 +1,8 @@
+{%- import_yaml 'nexus/defaults.yaml' as default_settings  %}
+
+{% set nexus = salt['pillar.get'](
+   'nexus',
+   default=default_settings.nexus,
+   merge=True
+   )
+%}

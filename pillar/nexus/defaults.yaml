@@ -1,0 +1,5 @@
+nexus:
+  source:
+    version: '3.15.2-2'
+    path: ''
+    

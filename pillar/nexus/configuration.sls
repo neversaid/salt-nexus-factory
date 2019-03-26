@@ -1,0 +1,3 @@
+nexus:
+  install:
+    user: 'Nada'
